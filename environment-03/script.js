@@ -23,5 +23,7 @@ function showEvents(sixthMonth) {
 }
 
 function filterMonthSix() {
+    //for hver date value splitter vi ved "-" og får et nyt array af ["year", "month", "date"]
+    //Herfra sammenligner vi index 1 med "06" if true, return
     return events.filter((event) => event.date.split("-")[1] === "06");
 }
