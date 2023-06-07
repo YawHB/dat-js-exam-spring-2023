@@ -41,6 +41,7 @@ function showAllPosts(event) {
     // const isChecked = document.querySelector("#show-all-checkbox").checked;
 
     const isChecked = event.target.checked;
+    // const isChecked = input.checked;
 
     console.log(isChecked);
     if (isChecked) {
