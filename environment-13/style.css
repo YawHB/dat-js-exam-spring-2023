@@ -4,34 +4,13 @@ body {
     color: lightskyblue;
 }
 
-#podium {
+#tickets-list {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    gap: 4px;
-    align-items: end;
-    text-align: center;
-}
-#podium p {
-    margin: 0;
-    color: #eee;
+    gap: 1em;
+    padding: 1em;
 }
 
-.podium {
-    border: 3px solid lightskyblue;
-    align-self: flex-end;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 150%;
-    background-color: #888;
-}
-#silver .podium {
-    height: 5vw;
-}
-
-#gold .podium {
-    height: 8vw;
-}
-#bronze .podium {
-    height: 3vw;
+.ticketid {
+    font-size: 70%;
 }

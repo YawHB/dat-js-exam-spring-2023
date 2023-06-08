@@ -15,9 +15,12 @@
         </header>
         <main>
             <h2>Posts</h2>
-            <form id="filter-form">
-                <label for="all">Show all posts </label>
-                <input type="checkbox" name="all" id="all" />
+            <form id="sort-form">
+                <label for="sortorder">Sort by number of likes: </label>
+                <select name="sortorder" id="sortorder">
+                    <option value="ascending">low to high</option>
+                    <option value="descending">high to low</option>
+                </select>
             </form>
             <section id="posts-list">
                 <!-- <article>
