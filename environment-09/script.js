@@ -1,34 +1,36 @@
 "use strict";
 
+let posts = [];
+let sortLowToHigh = [];
+let sortHighToLow = [];
+
 window.addEventListener("load", start);
 
-let posts = [];
-let publishedPosts = [];
 async function start() {
-    posts = await fetchPosts();
+    posts = await getPosts();
     console.log(posts);
-    publishedPosts = posts.filter((post) => post.published);
-    showPosts(publishedPosts);
+
     document
-        .querySelector("#filter-form")
-        .addEventListener("change", showAllPosts);
+        .querySelector("#sortorder")
+        .addEventListener("change", refreshView);
+    sortByLikes();
+    showPosts();
 }
 
-async function fetchPosts() {
+async function getPosts() {
     const res = await fetch("posts.json");
     return res.json();
 }
 
-function showPosts(posts) {
+function showPosts() {
     document.querySelector("#posts-list").innerHTML = "";
     for (const post of posts) {
         const html = /*html*/ `
-        
         <article>
-                    <img src = "${post.image}" alt="${post.caption}" />
+                 <img src="${post.image}" alt="${post.caption}" />
                     <h2>${post.caption}</h2>
                     <p>Likes: ${post.likes}</p>
-                </article>
+        </article>
         
         `;
         document
@@ -37,16 +39,18 @@ function showPosts(posts) {
     }
 }
 
-function showAllPosts(event) {
-    // const isChecked = document.querySelector("#show-all-checkbox").checked;
+function sortByLikes() {
+    const selected = document.querySelector("#sortorder").value;
+    console.log(selected);
 
-    const isChecked = event.target.checked;
-    // const isChecked = input.checked;
-
-    console.log(isChecked);
-    if (isChecked) {
-        showPosts(posts);
-    } else if (!isChecked) {
-        showPosts(publishedPosts);
+    if (selected === "ascending") {
+        posts.sort((a, b) => a.likes - b.likes);
+    } else if (selected === "descending") {
+        posts.sort((b, a) => a.likes - b.likes);
     }
+}
+
+function refreshView() {
+    sortByLikes();
+    showPosts();
 }
